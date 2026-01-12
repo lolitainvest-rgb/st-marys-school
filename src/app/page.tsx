@@ -1,3 +1,5 @@
+export const runtime = 'edge';
+
 import Hero from "@/components/Hero";
 import NewsTicker from "@/components/NewsTicker";
 import Link from "next/link";

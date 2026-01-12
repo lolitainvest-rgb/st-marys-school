@@ -1,3 +1,5 @@
+export const runtime = 'edge';
+
 import Link from "next/link";
 import { Calendar, CheckCircle, Download, FileText } from "lucide-react";
 

@@ -1,3 +1,5 @@
+export const runtime = 'edge';
+
 import { BadgeCheck, Eye, Target, History } from "lucide-react";
 
 export default function AboutPage() {

@@ -1,3 +1,5 @@
+export const runtime = 'edge';
+
 import ContactForm from "@/components/ContactForm";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 

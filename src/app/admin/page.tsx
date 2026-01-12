@@ -1,3 +1,5 @@
+export const runtime = 'edge';
+
 import Link from "next/link";
 import { PlusCircle, Users, FileText, Image } from "lucide-react";
 

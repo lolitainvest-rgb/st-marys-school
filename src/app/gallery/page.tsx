@@ -1,3 +1,5 @@
+export const runtime = 'edge';
+
 import GalleryGrid from "@/components/GalleryGrid";
 import { Image as ImageIcon } from "lucide-react";
 
