@@ -59,10 +59,7 @@ export default function LoginPage() {
                     </button>
                 </form>
 
-                <div className="mt-6 text-center text-xs text-gray-400">
-                    <p>Demo Credentials:</p>
-                    <p>admin@stmarys.co.bw / admin123</p>
-                </div>
+
             </div>
         </div>
     );

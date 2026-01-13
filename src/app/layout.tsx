@@ -10,10 +10,10 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 export const metadata: Metadata = {
   metadataBase: new URL("https://stmarysschool.co.bw"),
   title: {
-    default: "St Mary's English Medium Primary School | Tlokweng",
+    default: "St Mary's English Medium Primary School | Tlokweng, Gaborone & Botswana",
     template: "%s | St Mary's Primary School",
   },
-  description: "St Mary's English Medium Primary School in Tlokweng, Botswana offers quality education with a focus on academic excellence, cultural heritage, and holistic development. Admissions open for 2026.",
+  description: "St Mary's English Medium Primary School in Tlokweng, Gaborone, Botswana offers quality education with a focus on academic excellence, cultural heritage, and holistic development. Admissions open for 2026.",
   keywords: [
     "St Mary's School",
     "Primary School Botswana",

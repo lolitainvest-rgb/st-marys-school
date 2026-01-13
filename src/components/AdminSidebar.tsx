@@ -31,7 +31,7 @@ export default function AdminSidebar() {
                 <p className="text-xs text-slate-400">St Mary's Website CMS</p>
             </div>
 
-            <nav className="flex-1 p-4 space-y-2">
+            <nav className="flex-1 p-4 space-y-2 overflow-y-auto">
                 {navItems.map((item) => {
                     const Icon = item.icon;
                     const isActive = pathname === item.href;
