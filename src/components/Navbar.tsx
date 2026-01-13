@@ -2,11 +2,17 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import Image from "next/image"
 import { Menu, X } from "lucide-react"
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false)
+    const pathname = usePathname();
+
+    if (pathname && pathname.startsWith("/admin")) {
+        return null;
+    }
 
     const links = [
         { name: "Home", href: "/" },
