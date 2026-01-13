@@ -32,7 +32,16 @@ export default function NewsPage() {
 
     const [editingId, setEditingId] = useState<number | null>(null);
 
-    // ... (keep useEffect and fetchNews same)
+    const handleDelete = async (id: number) => {
+        if (!confirm("Are you sure you want to delete this news item?")) return;
+
+        const { error } = await supabase.from('news').delete().eq('id', id);
+        if (!error) {
+            fetchNews();
+        } else {
+            alert("Failed to delete news item.");
+        }
+    };
 
     const handleEdit = (item: any) => {
         setFormData({ title: item.title, content: item.content, image_url: item.image_url || "" });

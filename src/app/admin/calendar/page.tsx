@@ -32,7 +32,7 @@ export default function CalendarPage() {
 
     const [editingId, setEditingId] = useState<number | null>(null);
 
-    // ... (keep fetchEvents)
+
 
     const handleDelete = async (id: number) => {
         if (!confirm("Are you sure you want to delete this event?")) return;
