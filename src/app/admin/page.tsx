@@ -2,8 +2,16 @@ export const runtime = 'edge';
 
 import Link from "next/link";
 import { PlusCircle, Users, FileText, Image } from "lucide-react";
+import { createClient } from "@/lib/supabaseClient";
 
-export default function AdminDashboard() {
+export default async function AdminDashboard() {
+    const supabase = createClient();
+
+    // Fetch counts
+    const { count: eventCount } = await supabase.from('events').select('*', { count: 'exact', head: true });
+    const { count: galleryCount } = await supabase.from('gallery').select('*', { count: 'exact', head: true });
+    const { count: newsCount } = await supabase.from('news').select('*', { count: 'exact', head: true });
+
     return (
         <div>
             <h1 className="text-3xl font-bold text-gray-900 mb-8">Dashboard Overview</h1>
@@ -17,8 +25,8 @@ export default function AdminDashboard() {
                             <PlusCircle size={20} />
                         </span>
                     </div>
-                    <p className="text-3xl font-bold text-gray-900">5</p>
-                    <p className="text-sm text-green-600 mt-2">+2 upcoming this month</p>
+                    <p className="text-3xl font-bold text-gray-900">{eventCount || 0}</p>
+                    <p className="text-sm text-green-600 mt-2">Active Calendar Items</p>
                 </div>
 
                 <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
@@ -28,8 +36,8 @@ export default function AdminDashboard() {
                             <Image size={20} />
                         </span>
                     </div>
-                    <p className="text-3xl font-bold text-gray-900">6</p>
-                    <p className="text-sm text-gray-400 mt-2">Last updated 2 days ago</p>
+                    <p className="text-3xl font-bold text-gray-900">{galleryCount || 0}</p>
+                    <p className="text-sm text-gray-400 mt-2">Total uploaded images</p>
                 </div>
 
                 <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
@@ -39,7 +47,7 @@ export default function AdminDashboard() {
                             <FileText size={20} />
                         </span>
                     </div>
-                    <p className="text-3xl font-bold text-gray-900">3</p>
+                    <p className="text-3xl font-bold text-gray-900">{newsCount || 0}</p>
                     <p className="text-sm text-gray-400 mt-2">Active on ticker</p>
                 </div>
             </div>

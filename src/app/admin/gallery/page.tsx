@@ -43,13 +43,30 @@ export default function GalleryPage() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        const { error } = await supabase.from('gallery').insert([formData]);
+
+        // Split by newline, comma, or space and remove empty strings
+        const urls = formData.image_url.split(/[\n,\s]+/).filter(url => url.trim().length > 0);
+
+        if (urls.length === 0) {
+            alert("Please enter at least one valid URL");
+            return;
+        }
+
+        const inserts = urls.map(url => ({
+            image_url: url.trim(),
+            caption: formData.caption,
+            category: formData.category
+        }));
+
+        const { error } = await supabase.from('gallery').insert(inserts);
+
         if (!error) {
             setFormData({ image_url: "", caption: "", category: "General" });
             setIsAdding(false);
             fetchGallery();
         } else {
-            alert("Failed to add image.");
+            console.error(error);
+            alert("Failed to add images. Check console for details.");
         }
     };
 
@@ -75,28 +92,30 @@ export default function GalleryPage() {
                     </div>
                     <form onSubmit={handleSubmit} className="space-y-4">
                         <div>
-                            <label className="block text-sm font-medium mb-1">Image URL</label>
-                            <input
-                                type="text"
-                                className="w-full border rounded-md px-3 py-2"
+                            <label className="block text-sm font-medium mb-1">Image URLs (Bulk Upload)</label>
+                            <div className="text-xs text-blue-600 mb-2 p-2 bg-blue-50 rounded">
+                                <strong>Tip:</strong> Paste multiple image links here. Separate them with a new line, comma, or space.
+                            </div>
+                            <textarea
+                                className="w-full border rounded-md px-3 py-2 h-32 font-mono text-sm"
                                 value={formData.image_url}
                                 onChange={e => setFormData({ ...formData, image_url: e.target.value })}
-                                placeholder="https://..."
+                                placeholder={`https://example.com/image1.jpg\nhttps://example.com/image2.jpg`}
                                 required
                             />
-                            <p className="text-xs text-gray-500 mt-1">For now, please host images externally (e.g. Imgur) and paste the link here. Direct upload coming soon.</p>
                         </div>
                         <div>
-                            <label className="block text-sm font-medium mb-1">Caption</label>
+                            <label className="block text-sm font-medium mb-1">Caption (Optional)</label>
                             <input
                                 type="text"
                                 className="w-full border rounded-md px-3 py-2"
                                 value={formData.caption}
                                 onChange={e => setFormData({ ...formData, caption: e.target.value })}
+                                placeholder="Applied to all uploaded images"
                             />
                         </div>
                         <div>
-                            <label className="block text-sm font-medium mb-1">Category</label>
+                            <label className="block text-sm font-medium mb-1">Album / Category</label>
                             <select
                                 className="w-full border rounded-md px-3 py-2"
                                 value={formData.category}
@@ -110,7 +129,9 @@ export default function GalleryPage() {
                         </div>
                         <div className="flex justify-end gap-2">
                             <button type="button" onClick={() => setIsAdding(false)} className="px-4 py-2 text-gray-600">Cancel</button>
-                            <button type="submit" className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700">Add to Gallery</button>
+                            <button type="submit" className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700">
+                                Upload {formData.image_url.split(/[\n,\s]+/).filter(Boolean).length > 1 ? "Images" : "Image"}
+                            </button>
                         </div>
                     </form>
                 </div>

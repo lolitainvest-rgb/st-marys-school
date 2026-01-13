@@ -53,23 +53,20 @@ export default function NewsTicker() {
       <div className="whitespace-nowrap animate-marquee flex gap-8 font-bold text-sm md:text-base uppercase tracking-wider">
         {/* Duplicate items to ensure smooth infinite scroll */}
         {tickerItems.map((item, i) => (
-          <span key={`original-${i}`}>{item}</span>
+          <span key={`original-${i}`} className="mx-8 inline-block">{item}</span>
         ))}
         {tickerItems.map((item, i) => (
-          <span key={`duplicate-${i}`}>{item}</span>
-        ))}
-        {tickerItems.map((item, i) => (
-          <span key={`triplicate-${i}`}>{item}</span>
+          <span key={`duplicate-${i}`} className="mx-8 inline-block">{item}</span>
         ))}
       </div>
 
       <style jsx>{`
         .animate-marquee {
-          animation: marquee 30s linear infinite;
+          animation: marquee 40s linear infinite;
         }
         @keyframes marquee {
           0% { transform: translateX(0); }
-          100% { transform: translateX(-100%); } /* simple translation might need adjustment based on width */
+          100% { transform: translateX(-50%); } 
         }
       `}</style>
     </div>
