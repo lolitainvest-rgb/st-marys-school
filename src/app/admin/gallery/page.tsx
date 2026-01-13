@@ -41,6 +41,32 @@ export default function GalleryPage() {
         }
     };
 
+    const handlePaste = (e: React.ClipboardEvent) => {
+        const text = e.clipboardData.getData('text');
+        if (!text) {
+            // If no text data, user might be pasting a file
+            e.preventDefault();
+            alert("It looks like you're trying to paste an image directly. Please paste a URL (link) instead.");
+        }
+    };
+
+    const pasteFromClipboard = async () => {
+        try {
+            const text = await navigator.clipboard.readText();
+            if (text) {
+                setFormData(prev => ({
+                    ...prev,
+                    image_url: prev.image_url + (prev.image_url ? '\n' : '') + text
+                }));
+            } else {
+                alert("Clipboard is empty or contains non-text data.");
+            }
+        } catch (err) {
+            console.error("Clipboard read error:", err);
+            alert("Could not read clipboard. Please ensure you have granted permission.");
+        }
+    };
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
@@ -93,8 +119,11 @@ export default function GalleryPage() {
                     <form onSubmit={handleSubmit} className="space-y-4">
                         <div>
                             <label className="block text-sm font-medium mb-1">Image URLs (Bulk Upload)</label>
-                            <div className="text-xs text-blue-600 mb-2 p-2 bg-blue-50 rounded">
-                                <strong>Tip:</strong> Paste multiple image links here. Separate them with a new line, comma, or space.
+                            <div className="text-xs text-blue-600 mb-2 p-2 bg-blue-50 rounded flex justify-between items-center">
+                                <span><strong>Tip:</strong> Paste multiple image links here (one per line).</span>
+                                <button type="button" onClick={pasteFromClipboard} className="text-blue-700 underline text-xs hover:text-blue-900 font-bold">
+                                    Paste from Clipboard
+                                </button>
                             </div>
                             <textarea
                                 className="w-full border rounded-md px-3 py-2 h-48 font-sans text-sm"
@@ -102,7 +131,8 @@ export default function GalleryPage() {
                                 spellCheck="false"
                                 value={formData.image_url}
                                 onChange={e => setFormData({ ...formData, image_url: e.target.value })}
-                                placeholder={`https://example.com/image1.jpg\nhttps://example.com/image2.jpg`}
+                                onPaste={handlePaste}
+                                placeholder="https://example.com/image1.jpg"
                                 required
                             />
                         </div>
