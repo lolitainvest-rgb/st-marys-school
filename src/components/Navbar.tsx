@@ -29,7 +29,7 @@ export default function Navbar() {
                 <div className="flex justify-between h-20 items-center">
                     {/* Logo Section */}
                     <div className="flex-shrink-0 flex items-center gap-3">
-                        <Link href="/" className="flex items-center gap-3">
+                        <a href="/" className="flex items-center gap-3">
                             <div className="relative w-12 h-14 md:w-14 md:h-16">
                                 <Image
                                     src="/logo.png"
@@ -43,19 +43,29 @@ export default function Navbar() {
                                 <span className="font-bold text-xl md:text-2xl tracking-tight text-secondary leading-none">ST MARY'S</span>
                                 <span className="text-[0.6rem] md:text-xs text-white font-medium tracking-wider">PRIMARY SCHOOL</span>
                             </div>
-                        </Link>
+                        </a>
                     </div>
 
                     {/* Desktop Menu */}
                     <div className="hidden md:flex space-x-6">
                         {links.map((link) => (
-                            <Link
-                                key={link.name}
-                                href={link.href}
-                                className="hover:text-secondary transition-colors font-medium text-sm lg:text-base"
-                            >
-                                {link.name}
-                            </Link>
+                            link.href === "/" ? (
+                                <a
+                                    key={link.name}
+                                    href={link.href}
+                                    className="hover:text-secondary transition-colors font-medium text-sm lg:text-base"
+                                >
+                                    {link.name}
+                                </a>
+                            ) : (
+                                <Link
+                                    key={link.name}
+                                    href={link.href}
+                                    className="hover:text-secondary transition-colors font-medium text-sm lg:text-base"
+                                >
+                                    {link.name}
+                                </Link>
+                            )
                         ))}
                         <Link
                             href="/login"
@@ -83,14 +93,25 @@ export default function Navbar() {
                     <div className="md:hidden bg-primary pb-4">
                         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                             {links.map((link) => (
-                                <Link
-                                    key={link.name}
-                                    href={link.href}
-                                    onClick={() => setIsOpen(false)}
-                                    className="block px-3 py-2 rounded-md text-base font-medium hover:bg-blue-700 hover:text-secondary"
-                                >
-                                    {link.name}
-                                </Link>
+                                link.href === "/" ? (
+                                    <a
+                                        key={link.name}
+                                        href={link.href}
+                                        onClick={() => setIsOpen(false)}
+                                        className="block px-3 py-2 rounded-md text-base font-medium hover:bg-blue-700 hover:text-secondary"
+                                    >
+                                        {link.name}
+                                    </a>
+                                ) : (
+                                    <Link
+                                        key={link.name}
+                                        href={link.href}
+                                        onClick={() => setIsOpen(false)}
+                                        className="block px-3 py-2 rounded-md text-base font-medium hover:bg-blue-700 hover:text-secondary"
+                                    >
+                                        {link.name}
+                                    </Link>
+                                )
                             ))}
                             <Link
                                 href="/login"
