@@ -19,9 +19,8 @@ export default function AdminSidebar() {
     const router = useRouter();
 
     const handleSignOut = () => {
-        // In a real app, you would clear cookies/tokens here.
-        // For now, we just redirect to the home page.
-        router.push("/");
+        // Force hard refresh to clear all state and prevent "freezing"
+        window.location.href = "/";
     };
 
     return (

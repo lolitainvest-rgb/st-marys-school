@@ -3,7 +3,7 @@
 export const runtime = 'edge';
 
 import { useState, useEffect } from "react";
-import { Plus, Trash2, Calendar as CalendarIcon, X } from "lucide-react";
+import { Plus, Trash2, Calendar as CalendarIcon, X, Pencil } from "lucide-react";
 import { createClient } from "@/lib/supabaseClient";
 
 export default function CalendarPage() {
@@ -30,6 +30,10 @@ export default function CalendarPage() {
         setLoading(false);
     };
 
+    const [editingId, setEditingId] = useState<number | null>(null);
+
+    // ... (keep fetchEvents)
+
     const handleDelete = async (id: number) => {
         if (!confirm("Are you sure you want to delete this event?")) return;
 
@@ -41,15 +45,38 @@ export default function CalendarPage() {
         }
     };
 
+    const handleEdit = (event: any) => {
+        setFormData({ title: event.title, date: event.date, time: event.time || "", description: event.description || "" });
+        setEditingId(event.id);
+        setIsAdding(true);
+    };
+
+    const handleCancel = () => {
+        setFormData({ title: "", date: "", time: "", description: "" });
+        setEditingId(null);
+        setIsAdding(false);
+    };
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        const { error } = await supabase.from('events').insert([formData]);
+
+        let error;
+        if (editingId) {
+            const { error: updateError } = await supabase
+                .from('events')
+                .update(formData)
+                .eq('id', editingId);
+            error = updateError;
+        } else {
+            const { error: insertError } = await supabase.from('events').insert([formData]);
+            error = insertError;
+        }
+
         if (!error) {
-            setFormData({ title: "", date: "", time: "", description: "" });
-            setIsAdding(false);
+            handleCancel();
             fetchEvents();
         } else {
-            alert("Failed to add event.");
+            alert(editingId ? "Failed to update event." : "Failed to add event.");
         }
     };
 
@@ -58,7 +85,7 @@ export default function CalendarPage() {
             <div className="flex justify-between items-center">
                 <h1 className="text-3xl font-bold text-gray-900">Manage Calendar</h1>
                 <button
-                    onClick={() => setIsAdding(true)}
+                    onClick={() => { handleCancel(); setIsAdding(true); }}
                     className="bg-primary text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-blue-700"
                 >
                     <Plus size={20} /> Add Event
@@ -68,8 +95,8 @@ export default function CalendarPage() {
             {isAdding && (
                 <div className="bg-white p-6 rounded-xl shadow-md border border-gray-100 mb-6">
                     <div className="flex justify-between items-center mb-4">
-                        <h3 className="text-lg font-bold">New Event</h3>
-                        <button onClick={() => setIsAdding(false)} className="text-gray-400 hover:text-gray-600">
+                        <h3 className="text-lg font-bold">{editingId ? "Edit Event" : "New Event"}</h3>
+                        <button onClick={handleCancel} className="text-gray-400 hover:text-gray-600">
                             <X size={20} />
                         </button>
                     </div>
@@ -115,8 +142,10 @@ export default function CalendarPage() {
                             />
                         </div>
                         <div className="flex justify-end gap-2">
-                            <button type="button" onClick={() => setIsAdding(false)} className="px-4 py-2 text-gray-600">Cancel</button>
-                            <button type="submit" className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700">Save Event</button>
+                            <button type="button" onClick={handleCancel} className="px-4 py-2 text-gray-600">Cancel</button>
+                            <button type="submit" className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700">
+                                {editingId ? "Update Event" : "Save Event"}
+                            </button>
                         </div>
                     </form>
                 </div>
@@ -148,12 +177,22 @@ export default function CalendarPage() {
                                         {event.time || '-'}
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <button
-                                            onClick={() => handleDelete(event.id)}
-                                            className="text-red-600 hover:text-red-900"
-                                        >
-                                            <Trash2 size={16} />
-                                        </button>
+                                        <div className="flex justify-end gap-2">
+                                            <button
+                                                onClick={() => handleEdit(event)}
+                                                className="text-blue-600 hover:text-blue-900"
+                                                title="Edit"
+                                            >
+                                                <Pencil size={16} />
+                                            </button>
+                                            <button
+                                                onClick={() => handleDelete(event.id)}
+                                                className="text-red-600 hover:text-red-900"
+                                                title="Delete"
+                                            >
+                                                <Trash2 size={16} />
+                                            </button>
+                                        </div>
                                     </td>
                                 </tr>
                             ))}

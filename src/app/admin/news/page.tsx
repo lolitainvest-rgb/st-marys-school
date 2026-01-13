@@ -3,7 +3,7 @@
 export const runtime = 'edge';
 
 import { useState, useEffect } from "react";
-import { Plus, Trash2, Calendar as CalendarIcon, Save, X } from "lucide-react";
+import { Plus, Trash2, Calendar as CalendarIcon, Save, X, Pencil } from "lucide-react";
 import { createClient } from "@/lib/supabaseClient";
 
 export default function NewsPage() {
@@ -30,26 +30,47 @@ export default function NewsPage() {
         setLoading(false);
     };
 
-    const handleDelete = async (id: number) => {
-        if (!confirm("Are you sure you want to delete this news item?")) return;
+    const [editingId, setEditingId] = useState<number | null>(null);
 
-        const { error } = await supabase.from('news').delete().eq('id', id);
-        if (!error) {
-            fetchNews();
-        } else {
-            alert("Failed to delete news item.");
-        }
+    // ... (keep useEffect and fetchNews same)
+
+    const handleEdit = (item: any) => {
+        setFormData({ title: item.title, content: item.content, image_url: item.image_url || "" });
+        setEditingId(item.id);
+        setIsAdding(true);
+    };
+
+    const handleCancel = () => {
+        setFormData({ title: "", content: "", image_url: "" });
+        setEditingId(null);
+        setIsAdding(false);
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        const { error } = await supabase.from('news').insert([formData]);
+
+        let error;
+
+        if (editingId) {
+            // Update existing
+            const { error: updateError } = await supabase
+                .from('news')
+                .update({ title: formData.title, content: formData.content, image_url: formData.image_url })
+                .eq('id', editingId);
+            error = updateError;
+        } else {
+            // Create new
+            const { error: insertError } = await supabase
+                .from('news')
+                .insert([formData]);
+            error = insertError;
+        }
+
         if (!error) {
-            setFormData({ title: "", content: "", image_url: "" });
-            setIsAdding(false);
+            handleCancel();
             fetchNews();
         } else {
-            alert("Failed to add news item.");
+            alert(editingId ? "Failed to update news." : "Failed to add news.");
         }
     };
 
@@ -58,7 +79,7 @@ export default function NewsPage() {
             <div className="flex justify-between items-center">
                 <h1 className="text-3xl font-bold text-gray-900">Manage News</h1>
                 <button
-                    onClick={() => setIsAdding(true)}
+                    onClick={() => { handleCancel(); setIsAdding(true); }}
                     className="bg-primary text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-blue-700"
                 >
                     <Plus size={20} /> Add News
@@ -68,8 +89,8 @@ export default function NewsPage() {
             {isAdding && (
                 <div className="bg-white p-6 rounded-xl shadow-md border border-gray-100 mb-6">
                     <div className="flex justify-between items-center mb-4">
-                        <h3 className="text-lg font-bold">New Announcement</h3>
-                        <button onClick={() => setIsAdding(false)} className="text-gray-400 hover:text-gray-600">
+                        <h3 className="text-lg font-bold">{editingId ? "Edit Announcement" : "New Announcement"}</h3>
+                        <button onClick={handleCancel} className="text-gray-400 hover:text-gray-600">
                             <X size={20} />
                         </button>
                     </div>
@@ -93,7 +114,6 @@ export default function NewsPage() {
                                 required
                             />
                         </div>
-                        {/* Image URL optional for now, future enhancement: upload */}
                         <div>
                             <label className="block text-sm font-medium mb-1">Image URL (Optional)</label>
                             <input
@@ -105,8 +125,10 @@ export default function NewsPage() {
                             />
                         </div>
                         <div className="flex justify-end gap-2">
-                            <button type="button" onClick={() => setIsAdding(false)} className="px-4 py-2 text-gray-600">Cancel</button>
-                            <button type="submit" className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700">Publish</button>
+                            <button type="button" onClick={handleCancel} className="px-4 py-2 text-gray-600">Cancel</button>
+                            <button type="submit" className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700">
+                                {editingId ? "Update News" : "Publish"}
+                            </button>
                         </div>
                     </form>
                 </div>
@@ -126,12 +148,22 @@ export default function NewsPage() {
                                     {new Date(item.created_at).toLocaleDateString()}
                                 </div>
                             </div>
-                            <button
-                                onClick={() => handleDelete(item.id)}
-                                className="text-red-400 hover:text-red-600 p-2"
-                            >
-                                <Trash2 size={20} />
-                            </button>
+                            <div className="flex gap-2">
+                                <button
+                                    onClick={() => handleEdit(item)}
+                                    className="text-blue-500 hover:text-blue-700 p-2"
+                                    title="Edit"
+                                >
+                                    <Pencil size={20} />
+                                </button>
+                                <button
+                                    onClick={() => handleDelete(item.id)}
+                                    className="text-red-400 hover:text-red-600 p-2"
+                                    title="Delete"
+                                >
+                                    <Trash2 size={20} />
+                                </button>
+                            </div>
                         </div>
                     ))}
                     {news.length === 0 && <p className="text-gray-500 text-center py-8">No news items found.</p>}
