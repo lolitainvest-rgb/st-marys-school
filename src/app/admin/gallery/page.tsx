@@ -97,7 +97,9 @@ export default function GalleryPage() {
                                 <strong>Tip:</strong> Paste multiple image links here. Separate them with a new line, comma, or space.
                             </div>
                             <textarea
-                                className="w-full border rounded-md px-3 py-2 h-32 font-mono text-sm"
+                                className="w-full border rounded-md px-3 py-2 h-48 font-sans text-sm"
+                                autoComplete="off"
+                                spellCheck="false"
                                 value={formData.image_url}
                                 onChange={e => setFormData({ ...formData, image_url: e.target.value })}
                                 placeholder={`https://example.com/image1.jpg\nhttps://example.com/image2.jpg`}

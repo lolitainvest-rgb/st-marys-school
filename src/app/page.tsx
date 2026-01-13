@@ -11,6 +11,22 @@ export default async function Home() {
     `We are delighted to welcome you to St Mary's English Medium Primary School. Our school is dedicated to nurturing young minds in a vibrant and culturally grounded environment.\n\nAs we embark on the 2026 academic year, we renew our commitment to excellence ("ONWARD FOREVER ONWARD") and to fostering a community where every child feels valued and inspired to learn.`
   );
 
+  // Fetch latest gallery images
+  let galleryImages: any[] = [];
+  try {
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+    if (supabaseUrl && supabaseKey) {
+      const res = await fetch(`${supabaseUrl}/rest/v1/gallery?select=*&order=created_at.desc&limit=4`, {
+        headers: { apikey: supabaseKey, Authorization: `Bearer ${supabaseKey}` },
+        next: { revalidate: 10 }
+      });
+      if (res.ok) galleryImages = await res.json();
+    }
+  } catch (e) {
+    console.error("Failed to fetch gallery images", e);
+  }
+
   return (
     <div className="flex flex-col min-h-screen">
       <NewsTicker />
@@ -81,19 +97,27 @@ export default async function Home() {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-            {/* Preview Images */}
-            <div className="relative aspect-square bg-gray-200 rounded-xl overflow-hidden group shadow-sm hover:shadow-md transition-all">
-              <img src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?auto=format&fit=crop&q=80&w=400" className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" alt="Students" />
-            </div>
-            <div className="relative aspect-square bg-gray-200 rounded-xl overflow-hidden group shadow-sm hover:shadow-md transition-all">
-              <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=400" className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" alt="Sports" />
-            </div>
-            <div className="relative aspect-square bg-gray-200 rounded-xl overflow-hidden group shadow-sm hover:shadow-md transition-all">
-              <img src="https://images.unsplash.com/photo-1577896336186-8ad3d7c67fd3?auto=format&fit=crop&q=80&w=400" className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" alt="Culture" />
-            </div>
-            <div className="relative aspect-square bg-gray-200 rounded-xl overflow-hidden group shadow-sm hover:shadow-md transition-all">
-              <img src="https://images.unsplash.com/photo-1610484826967-09c5720778c7?auto=format&fit=crop&q=80&w=400" className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" alt="Events" />
-            </div>
+            {galleryImages.length > 0 ? (
+              galleryImages.map((img: any) => (
+                <div key={img.id} className="relative aspect-square bg-gray-200 rounded-xl overflow-hidden group shadow-sm hover:shadow-md transition-all">
+                  <img
+                    src={img.image_url}
+                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                    alt={img.caption || "Gallery Image"}
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-end p-2 opacity-0 group-hover:opacity-100">
+                    <p className="text-white text-xs font-medium truncate w-full">{img.caption}</p>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <>
+                <div className="relative aspect-square bg-gray-200 rounded-xl overflow-hidden group shadow-sm hover:shadow-md transition-all"><img src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?auto=format&fit=crop&q=80&w=400" className="w-full h-full object-cover" alt="Students" /></div>
+                <div className="relative aspect-square bg-gray-200 rounded-xl overflow-hidden group shadow-sm hover:shadow-md transition-all"><img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=400" className="w-full h-full object-cover" alt="Sports" /></div>
+                <div className="relative aspect-square bg-gray-200 rounded-xl overflow-hidden group shadow-sm hover:shadow-md transition-all"><img src="https://images.unsplash.com/photo-1577896336186-8ad3d7c67fd3?auto=format&fit=crop&q=80&w=400" className="w-full h-full object-cover" alt="Culture" /></div>
+                <div className="relative aspect-square bg-gray-200 rounded-xl overflow-hidden group shadow-sm hover:shadow-md transition-all"><img src="https://images.unsplash.com/photo-1610484826967-09c5720778c7?auto=format&fit=crop&q=80&w=400" className="w-full h-full object-cover" alt="Events" /></div>
+              </>
+            )}
           </div>
 
           <div className="text-center">
