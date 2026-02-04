@@ -5,6 +5,7 @@ import NewsTicker from "@/components/NewsTicker";
 import Link from "next/link";
 import { ArrowRight, Calendar, Users, BookOpen } from "lucide-react";
 import { getSiteSetting } from "@/utils/getSiteSetting";
+import GalleryImage from "@/components/GalleryImage";
 
 export default async function Home() {
   const principalWelcome = await getSiteSetting('principal_welcome',
@@ -100,7 +101,7 @@ export default async function Home() {
             {galleryImages.length > 0 ? (
               galleryImages.map((img: any) => (
                 <div key={img.id} className="relative aspect-square bg-gray-200 rounded-xl overflow-hidden group shadow-sm hover:shadow-md transition-all">
-                  <img
+                  <GalleryImage
                     src={img.image_url}
                     className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
                     alt={img.caption || "Gallery Image"}

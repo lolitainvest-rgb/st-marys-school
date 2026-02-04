@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { createClient } from "@/lib/supabaseClient";
+import GalleryImage from "./GalleryImage";
 
 export default function GalleryGrid() {
     const [images, setImages] = useState<any[]>([]);
@@ -52,7 +53,7 @@ export default function GalleryGrid() {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {filteredImages.map((image) => (
                     <div key={image.id} className="group relative aspect-square overflow-hidden rounded-xl bg-gray-100 shadow-sm hover:shadow-md transition-all">
-                        <img
+                        <GalleryImage
                             src={image.image_url}
                             alt={image.caption || "Gallery Image"}
                             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
