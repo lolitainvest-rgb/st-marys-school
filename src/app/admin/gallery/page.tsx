@@ -73,6 +73,35 @@ export default function GalleryPage() {
         setUploadStatuses(newStatuses);
     };
 
+    const handleDragOver = (e: React.DragEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
+    };
+
+    const handleDrop = (e: React.DragEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+            const newFiles = Array.from(e.dataTransfer.files).filter(file => file.type.startsWith('image/'));
+
+            if (newFiles.length > 0) {
+                setFiles(prev => [...prev, ...newFiles]);
+
+                // Initialize status for new files
+                const newStatuses = { ...uploadStatuses };
+                newFiles.forEach(file => {
+                    newStatuses[file.name] = {
+                        fileName: file.name,
+                        progress: 0,
+                        status: 'pending'
+                    };
+                });
+                setUploadStatuses(newStatuses);
+            }
+        }
+    };
+
     const handleUpload = async (e: React.FormEvent) => {
         e.preventDefault();
         if (files.length === 0) return;
@@ -88,13 +117,14 @@ export default function GalleryPage() {
 
             try {
                 // 1. Upload to Supabase Storage
+                // Sanitize filename to avoid issues with spaces or special chars
                 const fileExt = file.name.split('.').pop();
-                const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`;
-                const filePath = `${fileName}`;
+                const sanitizedFileName = file.name.replace(/[^a-zA-Z0-9.]/g, '_'); // Keep dots for extension
+                const uniqueName = `${Date.now()}_${sanitizedFileName}`;
 
                 const { error: uploadError } = await supabase.storage
                     .from('gallery_images')
-                    .upload(filePath, file);
+                    .upload(uniqueName, file);
 
                 if (uploadError) throw uploadError;
 
@@ -106,7 +136,7 @@ export default function GalleryPage() {
                 // 2. Get Public URL
                 const { data: { publicUrl } } = supabase.storage
                     .from('gallery_images')
-                    .getPublicUrl(filePath);
+                    .getPublicUrl(uniqueName);
 
                 // 3. Insert into Database
                 const { error: dbError } = await supabase
@@ -176,7 +206,11 @@ export default function GalleryPage() {
 
                     <form onSubmit={handleUpload} className="space-y-6">
                         {/* File Drop / Select */}
-                        <div className="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center bg-gray-50 hover:bg-gray-100 transition-colors">
+                        <div
+                            className="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center bg-gray-50 hover:bg-gray-100 transition-colors"
+                            onDragOver={handleDragOver}
+                            onDrop={handleDrop}
+                        >
                             <input
                                 type="file"
                                 id="file-upload"
@@ -274,8 +308,8 @@ export default function GalleryPage() {
                             <button
                                 type="submit"
                                 className={`px-6 py-2 rounded-md font-medium text-white flex items-center gap-2 ${files.length === 0 || isUploading
-                                        ? "bg-gray-400 cursor-not-allowed"
-                                        : "bg-green-600 hover:bg-green-700"
+                                    ? "bg-gray-400 cursor-not-allowed"
+                                    : "bg-green-600 hover:bg-green-700"
                                     }`}
                                 disabled={files.length === 0 || isUploading}
                             >
