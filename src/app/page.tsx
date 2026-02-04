@@ -17,12 +17,19 @@ export default async function Home() {
   try {
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
     const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
     if (supabaseUrl && supabaseKey) {
-      const res = await fetch(`${supabaseUrl}/rest/v1/gallery?select=*&order=created_at.desc&limit=4`, {
-        headers: { apikey: supabaseKey, Authorization: `Bearer ${supabaseKey}` },
-        next: { revalidate: 10 }
-      });
-      if (res.ok) galleryImages = await res.json();
+      // Use direct client for server-side fetching to be robust
+      const { createClient } = await import('@supabase/supabase-js');
+      const supabase = createClient(supabaseUrl, supabaseKey);
+
+      const { data } = await supabase
+        .from('gallery')
+        .select('*')
+        .order('created_at', { ascending: false })
+        .limit(4);
+
+      if (data) galleryImages = data;
     }
   } catch (e) {
     console.error("Failed to fetch gallery images", e);

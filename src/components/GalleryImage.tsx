@@ -22,8 +22,7 @@ export default function GalleryImage({ src, alt, className, ...props }: GalleryI
         <img
             src={src}
             alt={alt || "Gallery Image"}
-            className={`${className} ${loaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-500`}
-            onLoad={() => setLoaded(true)}
+            className={className}
             onError={() => setError(true)}
             {...props}
         />
