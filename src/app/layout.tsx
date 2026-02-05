@@ -76,9 +76,7 @@ export const metadata: Metadata = {
     "geo.position": "-24.6583;25.9225", // Approx coordinates
     "ICBM": "-24.6583, 25.9225",
   },
-  icons: {
-    icon: "/favicon.ico",
-  },
+
 };
 
 export default function RootLayout({
