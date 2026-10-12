@@ -19,8 +19,8 @@ export default function ContactPage() {
 
                     {/* Contact Info & Map */}
                     <div className="space-y-8">
-                        <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
-                            <h2 className="text-2xl font-bold text-gray-900 mb-6">School Information</h2>
+                        <div className="bg-blue-50/40 backdrop-blur-md p-8 rounded-2xl shadow-sm border border-blue-100/80">
+                            <h2 className="text-2xl font-bold text-slate-900 mb-6">School Information</h2>
                             <div className="space-y-6">
                                 <div className="flex items-start gap-4">
                                     <div className="w-10 h-10 bg-blue-50 text-primary rounded-full flex items-center justify-center flex-shrink-0">

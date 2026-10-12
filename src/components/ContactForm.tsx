@@ -90,7 +90,7 @@ ${data.message}`;
     };
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 bg-white p-8 rounded-2xl shadow-xs border border-slate-200">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 bg-amber-50/35 backdrop-blur-md p-8 rounded-2xl shadow-sm border border-amber-200/70">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-4">
                 <div>
                     <h3 className="text-2xl font-bold text-slate-900">Send us a Message</h3>

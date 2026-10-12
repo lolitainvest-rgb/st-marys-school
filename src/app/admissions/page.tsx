@@ -101,7 +101,7 @@ export default async function AdmissionsPage() {
                 </div>
 
                 {/* Application Process */}
-                <div className="bg-white/95 backdrop-blur-md rounded-2xl shadow-sm p-8 mb-12 border border-slate-200/90">
+                <div className="bg-blue-50/40 backdrop-blur-md rounded-2xl shadow-sm p-8 mb-12 border border-blue-100/80">
                     <h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-2">
                         <FileText className="text-secondary" /> How to Apply
                     </h2>
@@ -143,7 +143,7 @@ export default async function AdmissionsPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 
                     {/* School Fees */}
-                    <div className="bg-white/95 backdrop-blur-md rounded-2xl shadow-sm p-8 border-t-4 border-secondary border-x border-b border-slate-200/90 flex flex-col justify-between">
+                    <div className="bg-amber-50/35 backdrop-blur-md rounded-2xl shadow-sm p-8 border-t-4 border-secondary border-x border-b border-amber-200/70 flex flex-col justify-between">
                         <div>
                             <div className="flex items-center justify-between mb-6">
                                 <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-2">
@@ -195,7 +195,7 @@ export default async function AdmissionsPage() {
                     </div>
 
                     {/* Term Dates */}
-                    <div className="bg-white/95 backdrop-blur-md rounded-2xl shadow-sm p-8 border-t-4 border-primary border-x border-b border-slate-200/90 flex flex-col justify-between">
+                    <div className="bg-blue-50/35 backdrop-blur-md rounded-2xl shadow-sm p-8 border-t-4 border-primary border-x border-b border-blue-200/70 flex flex-col justify-between">
                         <div>
                             <h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-2">
                                 <Calendar className="text-primary" /> Key Dates (2026)

@@ -43,9 +43,9 @@ export default async function Home() {
       <Hero />
 
       {/* Principal's Welcome Section */}
-      <section className="py-16 md:py-20 bg-white/70 backdrop-blur-xs">
+      <section className="py-16 md:py-20 bg-blue-50/30 backdrop-blur-xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white/95 backdrop-blur-md rounded-3xl p-8 md:p-12 shadow-xs border border-slate-200/80 text-center mb-12">
+          <div className="bg-white/90 backdrop-blur-md rounded-3xl p-8 md:p-12 shadow-xs border border-blue-100/80 text-center mb-12">
             <span className="text-xs font-bold uppercase tracking-widest text-primary bg-blue-50 px-3.5 py-1.5 rounded-full border border-blue-100">
               Welcome Message
             </span>
@@ -102,7 +102,7 @@ export default async function Home() {
       </section>
 
       {/* Core Values & Botho Preview Section */}
-      <section className="py-16 bg-white/60 backdrop-blur-xs border-y border-slate-200/60">
+      <section className="py-16 bg-amber-50/35 backdrop-blur-xs border-y border-amber-200/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 mb-12">
             <div>
@@ -126,7 +126,7 @@ export default async function Home() {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="bg-white/95 backdrop-blur-md p-5 rounded-2xl border border-slate-200/90 shadow-xs hover:shadow-md transition-shadow">
+            <div className="bg-white/90 backdrop-blur-md p-5 rounded-2xl border border-rose-100/90 shadow-xs hover:shadow-md transition-shadow">
               <div className="w-10 h-10 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center mb-3">
                 <Heart size={20} />
               </div>
@@ -134,7 +134,7 @@ export default async function Home() {
               <p className="text-xs text-slate-600">Empathy and care for every peer and community member.</p>
             </div>
 
-            <div className="bg-white/95 backdrop-blur-md p-5 rounded-2xl border border-slate-200/90 shadow-xs hover:shadow-md transition-shadow">
+            <div className="bg-amber-50/40 backdrop-blur-md p-5 rounded-2xl border border-amber-200/80 shadow-xs hover:shadow-md transition-shadow">
               <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center mb-3">
                 <Sparkles size={20} />
               </div>
@@ -142,7 +142,7 @@ export default async function Home() {
               <p className="text-xs text-slate-600">Nurturing Christian character and spiritual purpose.</p>
             </div>
 
-            <div className="bg-white/95 backdrop-blur-md p-5 rounded-2xl border border-slate-200/90 shadow-xs hover:shadow-md transition-shadow">
+            <div className="bg-blue-50/40 backdrop-blur-md p-5 rounded-2xl border border-blue-200/80 shadow-xs hover:shadow-md transition-shadow">
               <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-3">
                 <ShieldCheck size={20} />
               </div>
@@ -150,7 +150,7 @@ export default async function Home() {
               <p className="text-xs text-slate-600">Honouring the human worth and self-respect of each child.</p>
             </div>
 
-            <div className="bg-white/95 backdrop-blur-md p-5 rounded-2xl border border-slate-200/90 shadow-xs hover:shadow-md transition-shadow">
+            <div className="bg-amber-50/40 backdrop-blur-md p-5 rounded-2xl border border-amber-200/80 shadow-xs hover:shadow-md transition-shadow">
               <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-3">
                 <CheckCircle2 size={20} />
               </div>
@@ -193,7 +193,7 @@ export default async function Home() {
       </section>
 
       {/* Gallery Preview Section */}
-      <section className="py-16 bg-white/70 backdrop-blur-xs border-t border-slate-200/60">
+      <section className="py-16 bg-blue-50/35 backdrop-blur-xs border-t border-blue-200/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
             <h2 className="text-3xl font-extrabold text-slate-900">Life at St Mary&apos;s</h2>

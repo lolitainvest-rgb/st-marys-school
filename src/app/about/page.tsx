@@ -134,7 +134,7 @@ export default function AboutPage() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-20">
 
                 {/* Section 1: Our School (formerly Our History) */}
-                <section className="bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-slate-200/80">
+                <section className="bg-blue-50/40 backdrop-blur-md rounded-3xl p-8 md:p-12 shadow-sm border border-blue-100/80">
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
                         <div className="lg:col-span-7 space-y-6">
                             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-bold bg-secondary/20 text-slate-900 border border-secondary/40">
@@ -199,9 +199,9 @@ export default function AboutPage() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         {/* Mission Card */}
-                        <div className="bg-white rounded-3xl p-8 md:p-10 shadow-sm border border-slate-200/80 hover:shadow-md transition-shadow relative flex flex-col justify-between">
+                        <div className="bg-blue-50/45 backdrop-blur-md rounded-3xl p-8 md:p-10 shadow-sm border border-blue-200/70 hover:shadow-md transition-shadow relative flex flex-col justify-between">
                             <div className="space-y-4">
-                                <div className="w-14 h-14 rounded-2xl bg-blue-50 text-primary flex items-center justify-center border border-blue-100 shadow-xs">
+                                <div className="w-14 h-14 rounded-2xl bg-blue-100 text-primary flex items-center justify-center border border-blue-200 shadow-xs">
                                     <Target className="w-7 h-7" />
                                 </div>
                                 <h3 className="text-2xl font-black text-slate-900 tracking-tight">
@@ -211,16 +211,16 @@ export default function AboutPage() {
                                     &ldquo;St Mary&apos;s Catholic Primary School strives to deliver quality and affordable primary school education in a safe and conducive environment for the academic, physical, moral, spiritual and emotional development of our children.&rdquo;
                                 </p>
                             </div>
-                            <div className="mt-6 pt-6 border-t border-slate-100 flex items-center gap-2 text-xs font-bold text-primary uppercase tracking-wider">
+                            <div className="mt-6 pt-6 border-t border-blue-100/80 flex items-center gap-2 text-xs font-bold text-primary uppercase tracking-wider">
                                 <CheckCircle2 size={16} />
                                 <span>Holistic Child Development</span>
                             </div>
                         </div>
 
                         {/* Vision Card */}
-                        <div className="bg-white rounded-3xl p-8 md:p-10 shadow-sm border border-slate-200/80 hover:shadow-md transition-shadow relative flex flex-col justify-between">
+                        <div className="bg-amber-50/45 backdrop-blur-md rounded-3xl p-8 md:p-10 shadow-sm border border-amber-200/70 hover:shadow-md transition-shadow relative flex flex-col justify-between">
                             <div className="space-y-4">
-                                <div className="w-14 h-14 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center border border-amber-100 shadow-xs">
+                                <div className="w-14 h-14 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center border border-amber-200 shadow-xs">
                                     <Eye className="w-7 h-7" />
                                 </div>
                                 <h3 className="text-2xl font-black text-slate-900 tracking-tight">
@@ -235,7 +235,7 @@ export default function AboutPage() {
                                     </p>
                                 </div>
                             </div>
-                            <div className="mt-6 pt-6 border-t border-slate-100 flex items-center gap-2 text-xs font-bold text-amber-700 uppercase tracking-wider">
+                            <div className="mt-6 pt-6 border-t border-amber-100/80 flex items-center gap-2 text-xs font-bold text-amber-750 uppercase tracking-wider">
                                 <Sparkles size={16} />
                                 <span>Centred on Christ&apos;s Teachings</span>
                             </div>
@@ -281,12 +281,13 @@ export default function AboutPage() {
 
                     {/* 10 Values Grid */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 md:gap-5">
-                        {coreValues.map((val) => {
+                        {coreValues.map((val, idx) => {
                             const IconComponent = val.icon;
+                            const isEven = idx % 2 === 0;
                             return (
                                 <div
                                     key={val.num}
-                                    className="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between group"
+                                    className={`${isEven ? 'bg-blue-50/35 border-blue-100/80' : 'bg-amber-50/35 border-amber-100/80'} backdrop-blur-md rounded-2xl p-5 border shadow-xs hover:shadow-md hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between group`}
                                 >
                                     <div>
                                         <div className="flex items-center justify-between mb-4">

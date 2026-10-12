@@ -169,13 +169,14 @@ export default function EventCalendar() {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    {termsInfo.map((term) => {
+                    {termsInfo.map((term, idx) => {
                         const hasUpload = Boolean(term.fileUrl && term.fileUrl.trim().length > 0);
+                        const isAmber = idx === 1;
 
                         return (
                             <div 
                                 key={term.id} 
-                                className="bg-white rounded-2xl border border-slate-200/80 p-6 shadow-xs hover:shadow-md transition-all flex flex-col justify-between"
+                                className={`${isAmber ? 'bg-amber-50/40 border-amber-200/80' : 'bg-blue-50/40 border-blue-200/80'} backdrop-blur-md rounded-2xl border p-6 shadow-xs hover:shadow-md transition-all flex flex-col justify-between`}
                             >
                                 <div>
                                     <div className="flex items-center justify-between mb-3">
@@ -229,7 +230,7 @@ export default function EventCalendar() {
             </div>
 
             {/* Term Navigation & Key Dates */}
-            <div className="bg-white rounded-2xl border border-slate-200/80 p-6 md:p-8 shadow-xs space-y-8">
+            <div className="bg-amber-50/30 backdrop-blur-md rounded-2xl border border-amber-200/60 p-6 md:p-8 shadow-xs space-y-8">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-6">
                     <div>
                         <h2 className="text-xl sm:text-2xl font-bold text-slate-900">
@@ -264,8 +265,8 @@ export default function EventCalendar() {
                         <Clock size={14} className="text-primary" /> Key Term Milestones ({selectedTerm})
                     </h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                        {filteredKeyDates.map((item) => (
-                            <div key={item.id} className="p-4 rounded-xl bg-slate-50 border border-slate-200/70 space-y-1">
+                        {filteredKeyDates.map((item, idx) => (
+                            <div key={item.id} className={`p-4 rounded-xl ${idx % 2 === 0 ? 'bg-blue-50/50 border-blue-200/70' : 'bg-amber-50/50 border-amber-200/70'} backdrop-blur-md border space-y-1 shadow-xs`}>
                                 <span className="text-[0.65rem] font-bold uppercase tracking-wider text-primary bg-blue-50 px-2 py-0.5 rounded border border-blue-100 inline-block">
                                     {item.term}
                                 </span>
@@ -299,7 +300,7 @@ export default function EventCalendar() {
                                 return (
                                     <div
                                         key={event.id}
-                                        className="bg-white border border-slate-200 rounded-xl p-4 flex flex-col sm:flex-row sm:items-center gap-4 hover:border-primary/40 transition-colors"
+                                        className="bg-white/90 backdrop-blur-md border border-slate-200/90 rounded-xl p-4 flex flex-col sm:flex-row sm:items-center gap-4 hover:border-primary/40 transition-colors shadow-xs"
                                     >
                                         <div className="flex-shrink-0 w-16 h-16 bg-blue-50 text-primary rounded-xl flex flex-col items-center justify-center border border-blue-100">
                                             <span className="text-[0.7rem] font-bold uppercase tracking-wider">{month}</span>
