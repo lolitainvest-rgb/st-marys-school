@@ -83,11 +83,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} font-sans min-h-screen flex flex-col bg-slate-50 relative selection:bg-primary/20 selection:text-primary`}>
-        {/* Themed Transparent Wallpaper Layer */}
+      <body className={`${inter.variable} font-sans min-h-screen flex flex-col bg-slate-50/70 relative selection:bg-primary/20 selection:text-primary`}>
+        {/* Themed Transparent Wallpaper Layer - Visible & Accessible */}
         <div 
-          className="fixed inset-0 pointer-events-none z-0 opacity-[0.045] bg-repeat"
-          style={{ backgroundImage: "url('/theme-wallpaper.svg')", backgroundSize: "320px 320px" }}
+          className="fixed inset-0 pointer-events-none z-0 opacity-[0.16] bg-repeat transition-opacity duration-300"
+          style={{ backgroundImage: "url('/theme-wallpaper.svg')", backgroundSize: "300px 300px" }}
           aria-hidden="true"
         />
         <Navbar />

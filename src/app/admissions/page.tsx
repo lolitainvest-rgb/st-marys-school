@@ -101,8 +101,8 @@ export default async function AdmissionsPage() {
                 </div>
 
                 {/* Application Process */}
-                <div className="bg-white rounded-2xl shadow-xs p-8 mb-12 border border-slate-200/80">
-                    <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+                <div className="bg-white/95 backdrop-blur-md rounded-2xl shadow-sm p-8 mb-12 border border-slate-200/90">
+                    <h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-2">
                         <FileText className="text-secondary" /> How to Apply
                     </h2>
                     <div className="space-y-6">
@@ -110,7 +110,7 @@ export default async function AdmissionsPage() {
                             <div className="flex-shrink-0 w-8 h-8 rounded-full bg-blue-100 text-primary flex items-center justify-center font-bold">1</div>
                             <div>
                                 <h3 className="font-bold text-lg text-slate-900">Visit the School or Download Prospectus</h3>
-                                <p className="text-gray-600">
+                                <p className="text-slate-700 text-sm sm:text-base">
                                     Come to our campus in Tlokweng to collect an application form or download our official prospectus. Our office hours are Monday – Thursday: 7:30 AM – 3:30 PM &amp; Friday: 7:30 AM – 12:30 PM.
                                 </p>
                             </div>
@@ -119,8 +119,8 @@ export default async function AdmissionsPage() {
                             <div className="flex-shrink-0 w-8 h-8 rounded-full bg-blue-100 text-primary flex items-center justify-center font-bold">2</div>
                             <div>
                                 <h3 className="font-bold text-lg text-slate-900">Submit Documents</h3>
-                                <p className="text-gray-600">Bring the completed form along with:</p>
-                                <ul className="mt-2 text-sm text-gray-500 list-disc list-inside ml-2 space-y-1">
+                                <p className="text-slate-700 text-sm sm:text-base">Bring the completed form along with:</p>
+                                <ul className="mt-2 text-sm text-slate-600 list-disc list-inside ml-2 space-y-1">
                                     <li>Copy of Child&apos;s Birth Certificate</li>
                                     <li>Copy of Parent/Guardian ID (Omang/Passport)</li>
                                     <li>Recent Passport Size Photo of the child</li>
@@ -133,7 +133,7 @@ export default async function AdmissionsPage() {
                             <div className="flex-shrink-0 w-8 h-8 rounded-full bg-blue-100 text-primary flex items-center justify-center font-bold">3</div>
                             <div>
                                 <h3 className="font-bold text-lg text-slate-900">Assessment &amp; Placement</h3>
-                                <p className="text-gray-600">Prospective students may be invited for a short placement assessment to determine appropriate learning support.</p>
+                                <p className="text-slate-700 text-sm sm:text-base">Prospective students may be invited for a short placement assessment to determine appropriate learning support.</p>
                             </div>
                         </div>
                     </div>
@@ -143,37 +143,37 @@ export default async function AdmissionsPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 
                     {/* School Fees */}
-                    <div className="bg-white rounded-2xl shadow-xs p-8 border-t-4 border-secondary border-x border-b border-slate-200/80 flex flex-col justify-between">
+                    <div className="bg-white/95 backdrop-blur-md rounded-2xl shadow-sm p-8 border-t-4 border-secondary border-x border-b border-slate-200/90 flex flex-col justify-between">
                         <div>
                             <div className="flex items-center justify-between mb-6">
-                                <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
+                                <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-2">
                                     <CreditCard className="text-primary w-6 h-6" /> School Fees (2026)
                                 </h2>
                             </div>
 
                             <div className="space-y-4">
-                                <div className="flex justify-between items-center pb-2 border-b border-gray-100">
-                                    <span className="text-gray-600">Registration Fee (One-time)</span>
+                                <div className="flex justify-between items-center pb-2 border-b border-slate-100">
+                                    <span className="text-slate-700 font-medium">Registration Fee (One-time)</span>
                                     <span className="font-bold text-primary">{fees.registrationFee}</span>
                                 </div>
-                                <div className="flex justify-between items-center pb-2 border-b border-gray-100">
-                                    <span className="text-gray-600">Standard 1 – 7 (Per Term)</span>
+                                <div className="flex justify-between items-center pb-2 border-b border-slate-100">
+                                    <span className="text-slate-700 font-medium">Standard 1 – 7 (Per Term)</span>
                                     <span className="font-bold text-primary">{fees.standardPrimaryFee}</span>
                                 </div>
-                                <div className="flex justify-between items-center pb-2 border-b border-gray-100">
-                                    <span className="text-gray-600">Pre-School (Per Term)</span>
+                                <div className="flex justify-between items-center pb-2 border-b border-slate-100">
+                                    <span className="text-slate-700 font-medium">Pre-School (Per Term)</span>
                                     <span className="font-bold text-primary">{fees.preschoolFee}</span>
                                 </div>
 
                                 {fees.customItems && fees.customItems.map((item) => (
-                                    <div key={item.id} className="flex justify-between items-center pb-2 border-b border-gray-100">
-                                        <span className="text-gray-600">{item.name} ({item.frequency})</span>
+                                    <div key={item.id} className="flex justify-between items-center pb-2 border-b border-slate-100">
+                                        <span className="text-slate-700 font-medium">{item.name} ({item.frequency})</span>
                                         <span className="font-bold text-slate-900">{item.amount}</span>
                                     </div>
                                 ))}
 
-                                <div className="bg-blue-50 p-4 rounded-xl mt-4">
-                                    <p className="text-xs text-blue-900 leading-relaxed">
+                                <div className="bg-blue-50/90 p-4 rounded-xl mt-4 border border-blue-100">
+                                    <p className="text-xs text-blue-950 leading-relaxed font-medium">
                                         {fees.notes}
                                     </p>
                                 </div>
@@ -195,9 +195,9 @@ export default async function AdmissionsPage() {
                     </div>
 
                     {/* Term Dates */}
-                    <div className="bg-white rounded-2xl shadow-xs p-8 border-t-4 border-primary border-x border-b border-slate-200/80 flex flex-col justify-between">
+                    <div className="bg-white/95 backdrop-blur-md rounded-2xl shadow-sm p-8 border-t-4 border-primary border-x border-b border-slate-200/90 flex flex-col justify-between">
                         <div>
-                            <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+                            <h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-2">
                                 <Calendar className="text-primary" /> Key Dates (2026)
                             </h2>
                             <ul className="space-y-4">

@@ -5,7 +5,7 @@ import { MapPin, Phone, Mail, Clock, MessageCircle } from "lucide-react";
 
 export default function ContactPage() {
     return (
-        <div className="bg-gray-50 min-h-screen py-12 md:py-20">
+        <div className="bg-transparent min-h-screen py-12 md:py-20">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
                 <div className="text-center mb-16">

@@ -43,16 +43,16 @@ export default async function Home() {
       <Hero />
 
       {/* Principal's Welcome Section */}
-      <section className="py-16 md:py-20 bg-white">
+      <section className="py-16 md:py-20 bg-white/70 backdrop-blur-xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <div className="bg-white/95 backdrop-blur-md rounded-3xl p-8 md:p-12 shadow-xs border border-slate-200/80 text-center mb-12">
             <span className="text-xs font-bold uppercase tracking-widest text-primary bg-blue-50 px-3.5 py-1.5 rounded-full border border-blue-100">
               Welcome Message
             </span>
             <h2 className="text-3xl font-black text-slate-900 sm:text-4xl mt-3 tracking-tight">
               Principal&apos;s Welcome
             </h2>
-            <div className="mt-5 max-w-3xl mx-auto text-base sm:text-lg text-slate-600 whitespace-pre-wrap leading-relaxed">
+            <div className="mt-5 max-w-3xl mx-auto text-base sm:text-lg text-slate-700 whitespace-pre-wrap leading-relaxed font-medium">
               {principalWelcome}
             </div>
           </div>
@@ -102,7 +102,7 @@ export default async function Home() {
       </section>
 
       {/* Core Values & Botho Preview Section */}
-      <section className="py-16 bg-gradient-to-b from-slate-50 to-white border-y border-slate-200/60">
+      <section className="py-16 bg-white/60 backdrop-blur-xs border-y border-slate-200/60">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 mb-12">
             <div>
@@ -126,36 +126,36 @@ export default async function Home() {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs hover:shadow-md transition-shadow">
+            <div className="bg-white/95 backdrop-blur-md p-5 rounded-2xl border border-slate-200/90 shadow-xs hover:shadow-md transition-shadow">
               <div className="w-10 h-10 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center mb-3">
                 <Heart size={20} />
               </div>
               <h3 className="font-bold text-slate-900 text-sm mb-1">Love &amp; Compassion</h3>
-              <p className="text-xs text-slate-500">Empathy and care for every peer and community member.</p>
+              <p className="text-xs text-slate-600">Empathy and care for every peer and community member.</p>
             </div>
 
-            <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs hover:shadow-md transition-shadow">
+            <div className="bg-white/95 backdrop-blur-md p-5 rounded-2xl border border-slate-200/90 shadow-xs hover:shadow-md transition-shadow">
               <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center mb-3">
                 <Sparkles size={20} />
               </div>
               <h3 className="font-bold text-slate-900 text-sm mb-1">Faith &amp; Hope</h3>
-              <p className="text-xs text-slate-500">Nurturing Christian character and spiritual purpose.</p>
+              <p className="text-xs text-slate-600">Nurturing Christian character and spiritual purpose.</p>
             </div>
 
-            <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs hover:shadow-md transition-shadow">
+            <div className="bg-white/95 backdrop-blur-md p-5 rounded-2xl border border-slate-200/90 shadow-xs hover:shadow-md transition-shadow">
               <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-3">
                 <ShieldCheck size={20} />
               </div>
               <h3 className="font-bold text-slate-900 text-sm mb-1">Respect &amp; Dignity</h3>
-              <p className="text-xs text-slate-500">Honouring the human worth and self-respect of each child.</p>
+              <p className="text-xs text-slate-600">Honouring the human worth and self-respect of each child.</p>
             </div>
 
-            <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs hover:shadow-md transition-shadow">
+            <div className="bg-white/95 backdrop-blur-md p-5 rounded-2xl border border-slate-200/90 shadow-xs hover:shadow-md transition-shadow">
               <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-3">
                 <CheckCircle2 size={20} />
               </div>
               <h3 className="font-bold text-slate-900 text-sm mb-1">Responsibility</h3>
-              <p className="text-xs text-slate-500">Accountability for learning and stewardship of our community.</p>
+              <p className="text-xs text-slate-600">Accountability for learning and stewardship of our community.</p>
             </div>
           </div>
         </div>
@@ -193,39 +193,39 @@ export default async function Home() {
       </section>
 
       {/* Gallery Preview Section */}
-      <section className="py-16 bg-gray-50 border-t border-gray-100">
+      <section className="py-16 bg-white/70 backdrop-blur-xs border-t border-slate-200/60">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
-            <h2 className="text-3xl font-extrabold text-gray-900">Life at St Mary&apos;s</h2>
-            <p className="mt-4 text-lg text-gray-600">A glimpse into our vibrant school community</p>
+            <h2 className="text-3xl font-extrabold text-slate-900">Life at St Mary&apos;s</h2>
+            <p className="mt-4 text-lg text-slate-600">A glimpse into our vibrant school community</p>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
             {galleryImages.length > 0 ? (
               galleryImages.map((img: any) => (
-                <div key={img.id} className="relative aspect-square bg-gray-200 rounded-xl overflow-hidden group shadow-sm hover:shadow-md transition-all">
+                <div key={img.id} className="relative aspect-square bg-slate-200 rounded-xl overflow-hidden group shadow-sm hover:shadow-md transition-all border border-slate-200/60">
                   <GalleryImage
                     src={img.image_url}
                     className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
                     alt={img.caption || "Gallery Image"}
                   />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-end p-2 opacity-0 group-hover:opacity-100">
-                    <p className="text-white text-xs font-medium truncate w-full">{img.caption}</p>
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-end p-2 opacity-0 group-hover:opacity-100">
+                    <p className="text-white text-xs font-semibold truncate w-full drop-shadow-md">{img.caption}</p>
                   </div>
                 </div>
               ))
             ) : (
               <>
-                <div className="relative aspect-square bg-gray-200 rounded-xl overflow-hidden group shadow-sm hover:shadow-md transition-all"><img src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?auto=format&fit=crop&q=80&w=400" className="w-full h-full object-cover" alt="Students" /></div>
-                <div className="relative aspect-square bg-gray-200 rounded-xl overflow-hidden group shadow-sm hover:shadow-md transition-all"><img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=400" className="w-full h-full object-cover" alt="Sports" /></div>
-                <div className="relative aspect-square bg-gray-200 rounded-xl overflow-hidden group shadow-sm hover:shadow-md transition-all"><img src="https://images.unsplash.com/photo-1577896336186-8ad3d7c67fd3?auto=format&fit=crop&q=80&w=400" className="w-full h-full object-cover" alt="Culture" /></div>
-                <div className="relative aspect-square bg-gray-200 rounded-xl overflow-hidden group shadow-sm hover:shadow-md transition-all"><img src="https://images.unsplash.com/photo-1610484826967-09c5720778c7?auto=format&fit=crop&q=80&w=400" className="w-full h-full object-cover" alt="Events" /></div>
+                <div className="relative aspect-square bg-slate-200 rounded-xl overflow-hidden group shadow-sm hover:shadow-md transition-all border border-slate-200/60"><img src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?auto=format&fit=crop&q=80&w=400" className="w-full h-full object-cover" alt="Students" /></div>
+                <div className="relative aspect-square bg-slate-200 rounded-xl overflow-hidden group shadow-sm hover:shadow-md transition-all border border-slate-200/60"><img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=400" className="w-full h-full object-cover" alt="Sports" /></div>
+                <div className="relative aspect-square bg-slate-200 rounded-xl overflow-hidden group shadow-sm hover:shadow-md transition-all border border-slate-200/60"><img src="https://images.unsplash.com/photo-1577896336186-8ad3d7c67fd3?auto=format&fit=crop&q=80&w=400" className="w-full h-full object-cover" alt="Culture" /></div>
+                <div className="relative aspect-square bg-slate-200 rounded-xl overflow-hidden group shadow-sm hover:shadow-md transition-all border border-slate-200/60"><img src="https://images.unsplash.com/photo-1610484826967-09c5720778c7?auto=format&fit=crop&q=80&w=400" className="w-full h-full object-cover" alt="Events" /></div>
               </>
             )}
           </div>
 
           <div className="text-center">
-            <Link href="/gallery" className="inline-flex items-center text-primary font-bold hover:underline py-2.5 px-6 bg-white rounded-full shadow-xs border border-gray-200 hover:bg-gray-50 transition-colors text-sm">
+            <Link href="/gallery" className="inline-flex items-center text-primary font-bold hover:underline py-2.5 px-6 bg-white/95 backdrop-blur-md rounded-full shadow-xs border border-slate-200 hover:bg-slate-50 transition-colors text-sm">
               View Full Gallery <ArrowRight size={16} className="ml-2" />
             </Link>
           </div>

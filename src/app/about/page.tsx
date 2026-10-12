@@ -95,9 +95,9 @@ const coreValues = [
 
 export default function AboutPage() {
     return (
-        <div className="bg-slate-50 min-h-screen">
+        <div className="bg-transparent min-h-screen">
             {/* Page Header */}
-            <div className="bg-gradient-to-b from-blue-50/80 via-white to-slate-50 py-16 md:py-24 border-b border-slate-200/60">
+            <div className="bg-gradient-to-b from-blue-50/70 via-white/80 to-transparent py-16 md:py-24 border-b border-slate-200/60 backdrop-blur-xs">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs md:text-sm font-bold bg-blue-100/80 text-primary border border-blue-200 mb-4">
                         <School size={16} />
