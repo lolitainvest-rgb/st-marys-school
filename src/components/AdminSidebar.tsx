@@ -2,14 +2,16 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { LayoutDashboard, FileText, Calendar, Image, LogOut, Mail } from "lucide-react";
+import { LayoutDashboard, FileText, Calendar, Image, LogOut, Mail, FileDown, CreditCard } from "lucide-react";
 
 const navItems = [
     { name: "Dashboard", href: "/admin", icon: LayoutDashboard },
     { name: "Inbox", href: "/admin/messages", icon: Mail },
     { name: "Manage News", href: "/admin/news", icon: FileText },
-    { name: "Manage Calendar", href: "/admin/calendar", icon: Calendar },
+    { name: "Manage Calendar & Dates", href: "/admin/calendar", icon: Calendar },
+    { name: "Manage School Fees", href: "/admin/fees", icon: CreditCard },
     { name: "Manage Gallery", href: "/admin/gallery", icon: Image },
+    { name: "School Prospectus", href: "/admin/prospectus", icon: FileDown },
     { name: "Principal's Welcome", href: "/admin/principal", icon: FileText },
     { name: "System Settings", href: "/admin/settings", icon: LayoutDashboard },
 ];
@@ -60,5 +62,5 @@ export default function AdminSidebar() {
                 </button>
             </div>
         </div>
-    )
+    );
 }

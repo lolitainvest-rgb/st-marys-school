@@ -2,7 +2,7 @@ export default function StructuredData() {
     const jsonLd = {
         "@context": "https://schema.org",
         "@type": "School",
-        "name": "St Mary's English Medium Primary School",
+        "name": "St Mary's Catholic Primary School",
         "image": "https://stmarysschool.co.bw/og-image.jpg",
         "url": "https://stmarysschool.co.bw",
         "telephone": "+2673928788",
@@ -19,18 +19,27 @@ export default function StructuredData() {
             "latitude": -24.6583,
             "longitude": 25.9225
         },
-        "openingHoursSpecification": {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": [
-                "Monday",
-                "Tuesday",
-                "Wednesday",
-                "Thursday",
-                "Friday"
-            ],
-            "opens": "07:30",
-            "closes": "16:30"
-        },
+        "openingHoursSpecification": [
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": [
+                    "Monday",
+                    "Tuesday",
+                    "Wednesday",
+                    "Thursday"
+                ],
+                "opens": "07:30",
+                "closes": "15:30"
+            },
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": [
+                    "Friday"
+                ],
+                "opens": "07:30",
+                "closes": "12:30"
+            }
+        ],
         "sameAs": [
             "https://www.facebook.com/StMarysEnglishMediumPrimarySchool"
         ]

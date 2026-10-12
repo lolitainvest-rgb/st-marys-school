@@ -1,7 +1,7 @@
 export const runtime = 'edge';
 
 import ContactForm from "@/components/ContactForm";
-import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, MessageCircle } from "lucide-react";
 
 export default function ContactPage() {
     return (
@@ -46,6 +46,25 @@ export default function ContactPage() {
                                 </div>
 
                                 <div className="flex items-start gap-4">
+                                    <div className="w-10 h-10 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center flex-shrink-0">
+                                        <MessageCircle size={20} />
+                                    </div>
+                                    <div>
+                                        <h3 className="font-bold text-gray-900">WhatsApp Desk</h3>
+                                        <p className="text-gray-600">
+                                            <a 
+                                                href="https://wa.me/26774105044" 
+                                                target="_blank" 
+                                                rel="noopener noreferrer" 
+                                                className="text-emerald-700 font-bold hover:underline"
+                                            >
+                                                +267 74 105 044
+                                            </a>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div className="flex items-start gap-4">
                                     <div className="w-10 h-10 bg-blue-50 text-primary rounded-full flex items-center justify-center flex-shrink-0">
                                         <Mail size={20} />
                                     </div>
@@ -61,7 +80,8 @@ export default function ContactPage() {
                                     </div>
                                     <div>
                                         <h3 className="font-bold text-gray-900">Office Hours</h3>
-                                        <p className="text-gray-600">Monday - Friday: 7:30 AM - 4:30 PM</p>
+                                        <p className="text-gray-600">Monday – Thursday: 7:30 AM – 3:30 PM</p>
+                                        <p className="text-gray-600">Friday: 7:30 AM – 12:30 PM</p>
                                         <p className="text-gray-600">Weekends: Closed</p>
                                     </div>
                                 </div>

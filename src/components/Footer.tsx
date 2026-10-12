@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Facebook, Mail, MapPin, Phone } from "lucide-react";
+import { Facebook, Mail, MapPin, Phone, Clock } from "lucide-react";
 import { getSiteSetting } from "@/utils/getSiteSetting";
 
 export default async function Footer() {
@@ -71,6 +71,10 @@ export default async function Footer() {
                             <div className="flex items-start gap-3">
                                 <Mail className="flex-shrink-0 text-secondary" size={20} />
                                 <span>admin@stmarysschool.co.bw</span>
+                            </div>
+                            <div className="flex items-start gap-3">
+                                <Clock className="flex-shrink-0 text-secondary" size={20} />
+                                <span>Mon – Thu: 7:30 AM – 3:30 PM<br />Fri: 7:30 AM – 12:30 PM</span>
                             </div>
                         </div>
                     </div>

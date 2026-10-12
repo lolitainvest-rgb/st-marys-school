@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google"; // Switch to Inter
+import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -10,50 +10,49 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 export const metadata: Metadata = {
   metadataBase: new URL("https://stmarysschool.co.bw"),
   title: {
-    default: "St Mary's English Medium Primary School | Tlokweng, Gaborone & Botswana",
-    template: "%s | St Mary's Primary School",
+    default: "St Mary's Catholic Primary School | Tlokweng, Botswana",
+    template: "%s | St Mary's Catholic Primary School",
   },
-  description: "St Mary's English Medium Primary School in Tlokweng, Gaborone, Botswana offers quality education with a focus on academic excellence, cultural heritage, and holistic development. Admissions open for 2026.",
+  description: "St Mary's Catholic Primary School in Tlokweng, Botswana offers quality and affordable education centred on Christ's teachings and cultural values of Botho. Motto: Forever Onward.",
   keywords: [
-    "St Mary's School",
+    "St Mary's Catholic Primary School",
+    "St Mary's School Tlokweng",
+    "Catholic Primary School Botswana",
     "Primary School Botswana",
     "English Medium School Tlokweng",
     "Best Primary Schools in Gaborone",
     "Private School Tlokweng",
-    "St Mary's English Medium",
-    "Botswana Education",
     "Standard 1 Admissions 2026",
-    "Motswana Culture School"
+    "Botswana Primary Education"
   ],
   authors: [{ name: "St Mary's School" }, { name: "Lolita Investment PTY LTD", url: "https://lolitainvestment.com" }],
   creator: "Lolita Investment PTY LTD",
-  publisher: "St Mary's English Medium Primary School",
+  publisher: "St Mary's Catholic Primary School",
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
   openGraph: {
-    title: "St Mary's English Medium Primary School",
-    description: "Onward, Onward, Forever Onward. Excellence in primary education rooted in cultural values.",
+    title: "St Mary's Catholic Primary School | Forever Onward",
+    description: "Forever Onward. Delivering quality and affordable primary school education centred on Christ's teachings.",
     url: "https://stmarysschool.co.bw",
-    siteName: "St Mary's School",
+    siteName: "St Mary's Catholic Primary School",
     locale: "en_US",
     type: "website",
     images: [
       {
-        url: "/og-image.jpg", // We'll need to recommend adding this file later
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "St Mary's School Campus",
+        alt: "St Mary's Catholic Primary School Campus",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "St Mary's English Medium Primary School",
-    description: "Join us at St Mary's! Admissions open for 2026. Quality education in Tlokweng.",
-    // images: ["/twitter-image.jpg"],
+    title: "St Mary's Catholic Primary School",
+    description: "Join us at St Mary's Catholic Primary School! Admissions open for 2026. Forever Onward.",
   },
   robots: {
     index: true,
@@ -69,14 +68,12 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
-  // Geo-tags for Local SEO
   other: {
-    "geo.region": "BW-SE", // South-East District
+    "geo.region": "BW-SE",
     "geo.placename": "Tlokweng",
-    "geo.position": "-24.6583;25.9225", // Approx coordinates
+    "geo.position": "-24.6583;25.9225",
     "ICBM": "-24.6583, 25.9225",
   },
-
 };
 
 export default function RootLayout({
@@ -86,9 +83,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} font-sans min-h-screen flex flex-col bg-gray-50`}>
+      <body className={`${inter.variable} font-sans min-h-screen flex flex-col bg-slate-50 relative selection:bg-primary/20 selection:text-primary`}>
+        {/* Themed Transparent Wallpaper Layer */}
+        <div 
+          className="fixed inset-0 pointer-events-none z-0 opacity-[0.045] bg-repeat"
+          style={{ backgroundImage: "url('/theme-wallpaper.svg')", backgroundSize: "320px 320px" }}
+          aria-hidden="true"
+        />
         <Navbar />
-        <main className="flex-grow">
+        <main className="flex-grow relative z-10">
           {children}
         </main>
         <Footer />
